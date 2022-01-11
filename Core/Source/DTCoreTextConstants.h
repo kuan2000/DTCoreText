@@ -42,7 +42,7 @@ extern NSString * const NSAttachmentAttributeName;
 #endif
 
 // custom options
-
+extern NSString * const DTDefaultImageSize;
 extern NSString * const DTMaxImageSize;
 extern NSString * const DTDefaultFontFamily;
 extern NSString * const DTDefaultFontName;
