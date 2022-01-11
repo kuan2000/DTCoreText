@@ -112,9 +112,14 @@ static NSMutableDictionary *_classForTagNameLookup = nil;
 #endif
 		}
 		
-		// set the display size from the original size, restricted to the max size
+	if (_originalSize.height == 0){
+          	  NSValue *defaultSize =[options objectForKey:DTDefaultImageSize];
+          	  [self setDisplaySize:[defaultSize CGSizeValue] withMaxDisplaySize:_maxImageSize];
+      	  }
+      		  else{
+          	 // set the display size from the original size, restricted to the max size
 		[self setDisplaySize:_originalSize withMaxDisplaySize:_maxImageSize];
-
+      	  } 
 		_attributes = element.attributes;
 	}
 	
@@ -235,6 +240,10 @@ static NSMutableDictionary *_classForTagNameLookup = nil;
 			displaySize.height = round(_originalSize.height / factor);
 		}
 	}
+	    else{
+			displaySize = CGSizeMake(displaySize.width, displaySize.height);
+  	  }
+
 
 	if (maxDisplaySize.width>0 && maxDisplaySize.height>0)
 	{
