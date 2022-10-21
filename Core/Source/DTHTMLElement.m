@@ -1050,36 +1050,40 @@ NSDictionary *_classesForNames = nil;
 		}
 	}
 	
-	NSString *decoration = [[styles objectForKey:@"text-decoration"] lowercaseString];
-	if (decoration && [decoration isKindOfClass:[NSString class]])
-	{
-		if ([decoration isEqualToString:@"underline"])
-		{
-			self.underlineStyle = kCTUnderlineStyleSingle;
-		}
-		else if ([decoration isEqualToString:@"line-through"])
-		{
-			self.strikeOut = YES;
-		}
-		else if ([decoration isEqualToString:@"none"])
-		{
-			// remove all
-			self.underlineStyle = kCTUnderlineStyleNone;
-			self.strikeOut = NO;
-		}
-		else if ([decoration isEqualToString:@"overline"])
-		{
-			DTLogInfo(@"Note: 'overline' text decoration not supported");
-		}
-		else if ([decoration isEqualToString:@"blink"])
-		{
-			DTLogInfo(@"Note: 'blink' text decoration not supported");
-		}
-		else if ([decoration isEqualToString:@"inherit"])
-		{
-			// nothing to do
-		}
-	}
+    id _styles = [styles objectForKey:@"text-decoration"];
+    if ([_styles isKindOfClass:[NSString class]])
+    {
+        NSString *decoration = [_styles lowercaseString];
+        if (decoration && [decoration isKindOfClass:[NSString class]])
+        {
+            if ([decoration isEqualToString:@"underline"])
+            {
+                self.underlineStyle = kCTUnderlineStyleSingle;
+            }
+            else if ([decoration isEqualToString:@"line-through"])
+            {
+                self.strikeOut = YES;
+            }
+            else if ([decoration isEqualToString:@"none"])
+            {
+                // remove all
+                self.underlineStyle = kCTUnderlineStyleNone;
+                self.strikeOut = NO;
+            }
+            else if ([decoration isEqualToString:@"overline"])
+            {
+                DTLogInfo(@"Note: 'overline' text decoration not supported");
+            }
+            else if ([decoration isEqualToString:@"blink"])
+            {
+                DTLogInfo(@"Note: 'blink' text decoration not supported");
+            }
+            else if ([decoration isEqualToString:@"inherit"])
+            {
+                // nothing to do
+            }
+        }
+    }
 	
 	NSString *alignment = [[styles objectForKey:@"text-align"] lowercaseString];
 	if (alignment && [alignment isKindOfClass:[NSString class]])
